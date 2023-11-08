@@ -1,6 +1,11 @@
 # First Test
 
-Repo has a React app, and a server connected to it.
+Repo has a React app, and a server.
+
+### TODO:
+- connect to mongo database.
+- make the UI prettier.
+- Create pages for when survey is opened.
 
 ## Setup Open AI api on Mac
 
