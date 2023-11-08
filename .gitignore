@@ -1,0 +1,26 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+survey-app/node_modules
+survey-app/.pnp
+survey-app/.pnp.js
+
+# testing
+/coverage
+
+# production
+survey-app/build
+
+# misc
+survey-app/.DS_Store
+survey-app/.env.local
+survey-app/.env.development.local
+survey-app/.env.test.local
+survey-app/.env.production.local
+
+survey-app/npm-debug.log*
+survey-app/yarn-debug.log*
+survey-app/yarn-error.log*
+
+# Server
+server/node_modules
