@@ -1,5 +1,18 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import './App.css'
+
+const Navbar = () => {
+  return (
+    <nav className='navbar'>
+      {/* You can add your navigation items here */}
+      <span>Home</span>
+      <span>Open surveys</span>
+      <span>Analytics</span>
+    </nav>
+  );
+};
+
 
 function App() {
   const [context, setContext] = useState('');
@@ -35,32 +48,36 @@ function App() {
 
   return (
     <div className='App'>
+      <Navbar />
       <header className='App-Header'>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor='context-input'>Describe the context of this survey:</label>
-          <input 
-          id="context-input"
-          type='text'
-          value={context}
-          onChange={handleContextInputChange}
-          required
+        <form onSubmit={handleSubmit} className='survey-form'>
+          <label htmlFor='context-input'>Provide information about how what the context of this survey is...</label>
+          <textarea 
+            id="context-input"
+            className='large-input'
+            placeholder='Enter the context...'
+            value={context}
+            onChange={handleContextInputChange}
+            required
           />
-          <br/>
-          <label htmlFor='aims-input'>Describe the aims of this survey:</label>
-          <input 
-          id="aims-input"
-          type='text'
-          value={aims}
-          onChange={handleAimsInputChange}
-          required
+          
+          <label htmlFor='aims-input'>Provide information about how what the aims of this survey are.</label>
+          <textarea 
+            id="aims-input"
+            className='large-input'
+            placeholder='Enter the aims...'
+            value={aims}
+            onChange={handleAimsInputChange}
+            required
           />
-          <button type='submit'>Submit</button>
+          
+          <button type='submit' className='large-button'>Start Survey</button>
         </form>
-        {isLoading && <p>Loading survey URL...</p>} {/* Loading text displayed during request */}
+        {isLoading && <p>Survey is loading...</p>}
         {surveyUrl && <p>Survey URL: <a href={surveyUrl}>{surveyUrl}</a></p>}
       </header>
     </div>
-  )
+  );
 }
 
 export default App;

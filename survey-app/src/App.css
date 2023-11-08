@@ -1,38 +1,49 @@
+/* General App styling */
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  padding: 10px;
+  background-color: #f5f5f5;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Header styles */
+.App-Header {
+  margin-top: 50px; /* Adjust as needed for your layout */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Survey Form styling */
+.survey-form {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  width: 80%; /* Match width for the form */
+  margin: auto; /* Center the form in the middle of the page */
 }
 
-.App-link {
-  color: #61dafb;
+/* Label and Input styles */
+.survey-form label,
+.survey-form .large-input {
+  width: 100%; /* Label and input take full width of the form */
+  margin: 10px 0;
+  text-align: left;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.survey-form label {
+  display: block; /* Ensures the label takes up the full width */
+  padding-left: 10px; /* Aligns label text with input text */
+}
+
+.large-input {
+  padding: 10px;
+}
+
+/* Button styles */
+.large-button {
+  padding: 10px 20px;
+  align-self: center; /* Centers the button */
+  margin-top: 40px; /* Adds space above the button, increased from 20px to avoid redundancy */
 }
