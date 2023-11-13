@@ -13,9 +13,14 @@ Resources:
       MemorySize: 128
       Timeout: 100
       Description: Basic Hello World
-      Policies: null
+      Policies:
+      - DynamoDBCrudPolicy:
+          TableName:
+            Ref: SampleTable
       Environment:
-        Variables: null
+        Variables:
+          SAMPLE_TABLE:
+            Ref: SampleTable
       Events:
         Api:
           Type: Api
