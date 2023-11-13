@@ -1,5 +1,14 @@
 AWSTemplateFormatVersion: '2010-09-09'
 Description: ConsultaBot
+Globals:
+  Function:
+    Timeout: 20
+  Api:
+    Cors:
+      AllowMethods: '''GET,POST,OPTIONS'''
+      AllowHeaders: '''content-type'''
+      AllowOrigin: '''*'''
+      AllowCredentials: '''*'''
 Transform:
 - AWS::Serverless-2016-10-31
 Resources:
@@ -26,7 +35,7 @@ Resources:
           Type: Api
           Properties:
             Path: /create-survey
-            Method: POST
+            Method: ANY
       CodeUri: createSurveyFunction
     Metadata:
       SamResourceId: createSurveyFunction
