@@ -29,22 +29,27 @@ function App() {
   };
 
   const handleSubmit = (e) => {
-    console.log('submitted', { context, aims })
     e.preventDefault();
+    console.log('Submitting form with context and aims:', { context, aims });
+
     setIsLoading(true); // Set loading to true before the request is made
-    axios.post('http://localhost:3001/create-survey', { context, aims })
-      .then(response => {
-        // Handle the response from the server
+
+    axios.post('http://localhost:3000/create-survey', { context, aims }, {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        console.log("Response received:", response.data);
         setSurveyUrl(response.data.surveyUrl);
-        console.log(response.data.surveyUrl);
-        setIsLoading(false); // Set loading to false after the request is completed
-      })
-      .catch(error => {
-        // Handle any errors from the server
-        console.log('There was an error creating the survey', error);
-        setIsLoading(false); // Set loading to false if the request fails
-      });
-  };
+    })
+    .catch(error => {
+        console.error('There was an error creating the survey:', error);
+    })
+    .finally(() => {
+        setIsLoading(false); // Set loading to false after the request is completed or fails
+    });
+};
 
   return (
     <div className='App'>

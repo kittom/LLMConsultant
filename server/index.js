@@ -1,7 +1,8 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const OpenAi = require('openai')
+const OpenAi = require('openai');
+// const mongoose = require('mongoose');
 
 // setup express server
 const app = express();
@@ -9,7 +10,18 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const openai = new OpenAi
+// setup database
+// mongoose.connect('mongodb+srv://sgmkitto:P3bbl3srabb1t@surveyappdb.hdloudr.mongodb.net/?retryWrites=true&w=majority')
+
+// const surveySchema = new mongoose.Schema({
+//     context:String,
+//     aims:String,
+//     questions:String
+// });
+
+// const Survey = mongoose.model('Survey', surveySchema);
+
+const openai = new OpenAi;
 
 // Placeholder for storing surveys in memory
 const surveys = {};
