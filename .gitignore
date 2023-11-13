@@ -26,4 +26,4 @@ survey-app/yarn-error.log*
 server/node_modules
 
 #build files
-ConsultaBot/.aws-sam/
+.aws-sam/
