@@ -25,8 +25,7 @@ export const createSurveyHandler = async (event) => {
         };
     }
 
-    console.info('Received:', event);
-
+    // console.info('Received:', event);
     let context, aims, surveyKey;
 
     try {

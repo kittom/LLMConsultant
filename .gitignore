@@ -24,3 +24,6 @@ survey-app/yarn-error.log*
 
 # Server
 server/node_modules
+
+#build files
+.aws-sam/
