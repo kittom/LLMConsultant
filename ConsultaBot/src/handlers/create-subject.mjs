@@ -1,4 +1,12 @@
-export const createSurveyHandler = async (event) => {
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
+import { DynamoDBDocumentClient, PutCommand } from '@aws-sdk/lib-dynamodb';
+const client = new DynamoDBClient({});
+const ddbDocClient = DynamoDBDocumentClient.from(client);
+
+// connect to DynamoDB table
+const tableName = process.env.SUBJECT_TABLE
+
+export const createSubjectHandler = async (event) => {
     // CORS headers
     const headers = {
         "Access-Control-Allow-Origin": "*", // Adjust this to be more restrictive in production
@@ -25,15 +33,16 @@ export const createSurveyHandler = async (event) => {
         };
     }
 
-    // console.info('Received:', event);
-    let context, aims, surveyKey;
+    
+    let context, aims, subjectKey;
 
     try {
         // Parse the request body
         const body = JSON.parse(event.body);
         context = body.context;
         aims = body.aims;
-        surveyKey = Math.random().toString(36).substring(2, 9);
+        // surveyKey = body.id
+        subjectKey = Math.random().toString(36).substring(2, 9);
     } catch (error) {
         // Handle JSON parsing error
         return {
@@ -42,13 +51,30 @@ export const createSurveyHandler = async (event) => {
             body: JSON.stringify({ message: "Invalid request body" }),
         };
     }
+    var params = {
+        TableName: tableName,
+        Item: {id : subjectKey, context: context}
+    }
 
-    // Your business logic here...
-
+    // Send data to database
+    console.log("Flag 1")
+    try {
+        console.log(params)
+        const data = await ddbDocClient.send(new PutCommand(params));
+        // console.log('Success - Item added or updated', data);
+    } catch (error) {
+        console.log("FLag 2")
+        // console.log('Error', error);
+        return {
+            statusCode: 500,
+            headers,
+            body: JSON.stringify("Error in connecting to Database")
+        }
+    }
+    console.log("Flag 4")
     // Return the response with CORS headers
     return {
         statusCode: 200,
-        headers,
         body: JSON.stringify({ surveyUrl: `http://localhost:3000/survey/${surveyKey}` }),
     };
 };

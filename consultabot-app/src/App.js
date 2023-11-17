@@ -34,7 +34,7 @@ function App() {
 
     setIsLoading(true); // Set loading to true before the request is made
 
-    axios.post('http://localhost:3000/create-survey', { context, aims }, {
+    axios.post('http://localhost:3000/create-subject', { context, aims }, {
         headers: {
             'Content-Type': 'application/json'
         }
