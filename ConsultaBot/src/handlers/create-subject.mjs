@@ -14,7 +14,6 @@ export const createSubjectHandler = async (event) => {
         "Access-Control-Allow-Methods": "OPTIONS,POST"
     };
 
-
     // Handle OPTIONS request for CORS preflight
     if (event.httpMethod === 'OPTIONS') {
         return {
@@ -33,15 +32,14 @@ export const createSubjectHandler = async (event) => {
         };
     }
 
-    
     let context, aims, subjectKey;
 
     try {
-        // Parse the request body
+    //     // Parse the request body
         const body = JSON.parse(event.body);
         context = body.context;
         aims = body.aims;
-        // surveyKey = body.id
+    //     // surveyKey = body.id
         subjectKey = Math.random().toString(36).substring(2, 9);
     } catch (error) {
         // Handle JSON parsing error
@@ -56,15 +54,15 @@ export const createSubjectHandler = async (event) => {
         Item: {id : subjectKey, context: context}
     }
 
-    // Send data to database
+    // // Send data to database
     console.log("Flag 1")
     try {
-        console.log(params)
+        console.log(tableName)
         const data = await ddbDocClient.send(new PutCommand(params));
-        // console.log('Success - Item added or updated', data);
+        console.log('SUCCESS ===>>>', data);
     } catch (error) {
-        console.log("FLag 2")
-        // console.log('Error', error);
+        // console.log("FLag 2")
+        console.log('ERROR ===>>>', error);
         return {
             statusCode: 500,
             headers,
@@ -75,6 +73,6 @@ export const createSubjectHandler = async (event) => {
     // Return the response with CORS headers
     return {
         statusCode: 200,
-        body: JSON.stringify({ surveyUrl: `http://localhost:3000/survey/${surveyKey}` }),
+        body: JSON.stringify({ surveyUrl: `http://localhost:3000/survey/${subjectKey}` }),
     };
 };

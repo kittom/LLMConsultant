@@ -27,3 +27,5 @@ server/node_modules
 
 #build files
 .aws-sam/
+
+node_modules/
